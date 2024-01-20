@@ -24,8 +24,8 @@ def create_recipe(user, **params):
         'title': 'Sample recipe title',
         'time_minutes': 22,
         'price': Decimal('5.25'),
-        'description': 'Sample description.',
-        'link': 'http://example.com/recipe.pdf'
+        'description': 'Sample description',
+        'link': 'http://example.com/recipe.pdf',
     }
     defaults.update(params)
 
@@ -33,7 +33,7 @@ def create_recipe(user, **params):
     return recipe
 
 
-class PublicRecipeAPITests(TestCase):
+class PublicRecipeApiTests(TestCase):
     """Test unauthenticated API requests."""
 
     def setUp(self):
@@ -74,7 +74,7 @@ class PrivateRecipeAPITests(TestCase):
         """Test list of recipes is limited to authenticated user."""
         other_user = get_user_model().objects.create_user(
             'other@example.com',
-            'password123'
+            'password123',
         )
         create_recipe(user=other_user)
         create_recipe(user=self.user)
